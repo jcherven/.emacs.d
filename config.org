@@ -81,10 +81,13 @@
 
 *** Evil
 #+begin_src emacs-lisp
-;; evil mode state at startup
-;;(require 'evil)
-;;(evil-mode 1)
-;;(setq evil-default-state 'normal)
+  ;; evil mode state at startup
+  (use-package evil
+    :ensure t
+    :init
+    :config
+    (evil-mode 1)
+    (setq evil-default-state 'normal))
 #+end_src
 
 *** IDO (Interactive Do) Mode
@@ -131,6 +134,38 @@ Smex is a M-x enhancement built on top of IDO for MRU and MFU M-x commands.
     (set-face-attribute 'default nil :background nil))
 #+end_src
 
+*** Switch Windows
+#+begin_src emacs-lisp
+  (use-package switch-window
+    :ensure t
+    :config
+    (setq switch-window-input-style 'minibuffer)
+    (setq switch-window-increase 4)
+    (setq switch-window-threshold 2)
+    (setq switch-window-shortcut-style 'qwerty)
+    (setq switch-window-qwerty-shortcuts
+          '("a" "s" "d" "f" "j" "k" "l"))
+    :bind
+    ([remap other-window] . switch-window))
+#+end_src
+
+*** Window Splitting Functions
+#+begin_src emacs-lisp
+  (defun split-and-follow-horizontally ()
+    (interactive)
+    (split-window-below)
+    (balance-windows)
+    (other-window 1))
+  (global-set-key (kbd "C-x 2") 'split-and-follow-horizontally)
+
+  (defun split-and-follow-vertically ()
+    (interactive)
+    (split-window-right)
+    (balance-windows)
+    (other-window 1))
+  (global-set-key (kbd "C-x 3") 'split-and-follow-vertically)
+#+end_src
+
 
 ** Buffer Editing
 *** Cursor
@@ -174,7 +209,6 @@ Avy works like easymotion in vim. Bound to M-s.
 #+end_src
 
 
-
 ** Org Mode
 *** Heading Indentation
 #+begin_src emacs-lisp
@@ -190,8 +224,5 @@ Avy works like easymotion in vim. Bound to M-s.
   (interactive (list my-term-shell)))
 (ad-activate 'ansi-term)
 #+end_src
-
-
-
 
 
