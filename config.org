@@ -1,3 +1,4 @@
+#+STARTUP: indent
 * Org Documented Emacs Configuration
 
 ** GUI
@@ -124,10 +125,12 @@ Smex is a M-x enhancement built on top of IDO for MRU and MFU M-x commands.
 #+begin_src emacs-lisp
   (when (eq system-type 'darwin)
     (set-face-attribute 'default nil :family "Dina")
+    (set-face-attribute 'default nil :foundry nil)
     (set-face-attribute 'default nil :height 160)
     (set-face-attribute 'default nil :foreground nil)
     (set-face-attribute 'default nil :background nil))
 #+end_src
+
 
 ** Buffer Editing
 *** Cursor
@@ -187,6 +190,8 @@ Avy works like easymotion in vim. Bound to M-s.
   (interactive (list my-term-shell)))
 (ad-activate 'ansi-term)
 #+end_src
+
+
 
 
 
