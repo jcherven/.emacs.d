@@ -1,0 +1,8 @@
+*~
+session*
+ido.*
+config.el
+auto-save-list
+elpa
+.#*
+smex-items

@@ -1,0 +1,191 @@
+* Org Documented Emacs Configuration
+
+** GUI
+*** Disable Toolbar and Menubar
+#+begin_src emacs-lisp
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+#+end_src
+
+*** Scroll Bar Mode
+#+begin_src emacs-lisp
+(scroll-bar-mode 1)
+#+end_src
+
+
+** Emacs System
+*** Config edit/reload
+**** edit
+#+begin_src emacs-lisp
+  (defun config-visit ()
+    (interactive)
+    (find-file "~/.emacs.d/config.org"))
+  (global-set-key (kbd "C-c e") 'config-visit)
+#+end_src
+
+**** reload
+#+begin_src emacs-lisp
+  (defun config-reload ()
+    (interactive)
+    (org-babel-load-file (expand-file-name "~/.emacs.d/config.org")))
+  (global-set-key (kbd "C-c r") 'config-reload)
+#+end_src
+
+*** Default Startup Buffers
+#+begin_src emacs-lisp
+;; show or don't show the startup screen
+(setq inhibit-startup-message nil)
+#+end_src
+
+*** Autosaving and Temp files
+#+begin_src emacs-lisp
+(setq make-backup-file nil)
+(setq auto-save-default nil)
+#+end_src
+
+*** Confirmation Prompts
+#+begin_src emacs-lisp
+(defalias 'yes-or-no-p 'y-or-n-p)
+#+end_src
+
+*** Buffer Scrolling
+#+begin_src emacs-lisp
+;; Set the screen jump when scrolling
+(setq scroll-conservatively 100)
+#+end_src
+
+*** Bell
+#+begin_src emacs-lisp
+(setq ring-bell-function 'ignore)
+#+end_src
+
+*** Keybindings
+**** Packages
+#+begin_src emacs-lisp
+;; which-key displays a helpful menu for emacs keybindings
+(use-package which-key
+  :ensure t
+  :init
+  (which-key-mode))
+#+end_src
+
+**** Bindings
+#+begin_src emacs-lisp
+;; Example of a global keybind
+;; (global-set-key (kbd "<s-return>") 'ansi-term)
+;; Swap super and meta keys for the HHKB if they aren't set in OS
+;; (setq x-meta-keysym 'super
+;;       x-super-keysym 'meta)
+#+end_src
+
+*** Evil
+#+begin_src emacs-lisp
+;; evil mode state at startup
+;;(require 'evil)
+;;(evil-mode 1)
+;;(setq evil-default-state 'normal)
+#+end_src
+
+
+** Buffer Editing
+*** Cursor
+#+begin_src emacs-lisp
+(when window-system (global-hl-line-mode t))
+;; tiny package that helps find the cursor when switching buffers
+(use-package beacon
+  :ensure t
+  :init
+  (beacon-mode 1))
+#+end_src
+
+*** Line wrapping
+*** Enable ibuffer
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C-x b") 'ibuffer)
+#+end_src
+
+*** Undo Tree
+#+begin_src emacs-lisp
+  (use-package undo-tree
+    :ensure t
+    :init
+    (global-undo-tree-mode))
+#+end_src
+
+*** Rainbow Mode
+#+begin_src emacs-lisp
+  (use-package rainbow-mode
+    :ensure t
+    :init (rainbow-mode 1))
+#+end_src
+
+
+** Terminal
+*** Setting Default Shell to System Bash
+#+begin_src emacs-lisp
+(defvar my-term-shell "bash")
+(defadvice ansi-term (before force-bash)
+  (interactive (list my-term-shell)))
+(ad-activate 'ansi-term)
+#+end_src
+
+
+** IDo (Interactive Do) Mode
+The ido.el package by KimStorm lets you interactively do things with buffers and files. As an example, while searching for a file with C-x C-f, ido can helpfully suggest the files whose paths are closest to your current string, allowing you to find your files more quickly.
+
+To activate, place this in your InitFile:
+
+    (require 'ido)
+    (ido-mode t)
+
+Then do
+
+    M-x customize-group RET ido RET
+
+and configure ido-mode. Another good setting to enable is ido-enable-flex-matching.
+
+*** Enable ido mode
+#+begin_src emacs-lisp
+  (setq ido-enable-flex-matching nil)
+  (setq ido-create-new-buffer 'always)
+  (setq ido-everywhere t)
+  (ido-mode 1)
+#+end_src
+
+*** ido-vertical
+#+begin_src emacs-lisp
+  (use-package ido-vertical-mode
+    :ensure t
+    :init
+    (ido-vertical-mode 1))
+  (setq ido-vertical-define-keys 'C-n-and-C-p-only)
+#+end_src
+
+*** smex
+Smex is a M-x enhancement built on top of IDO for MRU and MFU M-x commands.
+#+begin_src emacs-lisp
+  (use-package smex
+    :ensure t
+    :init (smex-initialize)
+    :bind
+    ("M-x" . smex))
+#+end_src
+
+*** Switch Buffer
+#+begin_src emacs-lisp
+(global-set-key (kbd "C-x C-b") 'ido-switch-buffer)
+#+end_src
+
+
+** avy
+Avy works like sneak in vim. Bound to M-s.
+#+begin_src emacs-lisp
+  (use-package avy
+    :ensure t
+    :bind
+    ("M-s" . avy-goto-char))
+#+end_src
+
+
+
+...
