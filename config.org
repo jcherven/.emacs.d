@@ -119,6 +119,15 @@ Smex is a M-x enhancement built on top of IDO for MRU and MFU M-x commands.
 (global-set-key (kbd "C-x C-b") 'ido-switch-buffer)
 #+end_src
 
+*** Faces/Fonts 
+**** Conditional font on MacOS
+#+begin_src emacs-lisp
+  (when (eq system-type 'darwin)
+    (set-face-attribute 'default nil :family "Dina")
+    (set-face-attribute 'default nil :height 160)
+    (set-face-attribute 'default nil :foreground nil)
+    (set-face-attribute 'default nil :background nil))
+#+end_src
 
 ** Buffer Editing
 *** Cursor
