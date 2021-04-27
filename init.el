@@ -48,7 +48,7 @@
      ("\\?\\?\\?+" . "#dc752f")))
  '(linum-format 'dynamic)
  '(package-selected-packages
-   '(company dashboard rainbow-delimiters sudo-edit hungry-delete evil switch-window avy undo-tree smex ido-vertical-mode beacon spacemacs-theme which-key use-package))
+   '(symon dmenu diminish company dashboard rainbow-delimiters sudo-edit hungry-delete evil switch-window avy undo-tree smex ido-vertical-mode beacon spacemacs-theme which-key use-package))
  '(pdf-view-midnight-colors '("#655370" . "#fbf8ef")))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

@@ -15,7 +15,6 @@
 
 
 ** Emacs System
-
 *** Terminal
 **** Set Default Shell to System Bash
 #+begin_src emacs-lisp
@@ -32,6 +31,22 @@
   (add-hook 'after-init-hook
             (lambda ()
               (ansi-term "bash")))
+#+end_src
+
+*** Modeline
+#+begin_src emacs-lisp
+  (use-package diminish
+    :ensure t
+    :init
+    (diminish 'hungry-delete-mode)
+    (diminish 'beacon-mode)
+    (diminish 'which-key-mode)
+    (diminish 'subword-mode)
+    (diminish 'rainbow-mode)
+    (diminish 'undo-tree-mode)
+    (diminish 'org-indent-mode)
+    (diminish 'undo-tree-mode)
+    )
 #+end_src
 
 *** Line Numbers
@@ -208,6 +223,21 @@ Smex is a M-x enhancement built on top of IDO for MRU and MFU M-x commands.
   (global-set-key (kbd "C-x 3") 'split-and-follow-vertically)
 #+end_src
 
+*** dmenu
+#+begin_src emacs-lisp
+  (use-package dmenu
+    :ensure t
+    :bind
+    ("C-M-SPC" . 'dmenu))
+#+end_src
+
+*** symon
+#+begin_src emacs-lisp
+  (use-package symon
+    :ensure t
+    :bind
+    ("C-M-h" . symon-mode))
+#+end_src
 
 ** Buffer Editing
 *** Cursor
