@@ -31,7 +31,6 @@
 
   (add-hook 'after-init-hook
             (lambda ()
-  ;            (kill-buffer "*scratch*")
               (ansi-term "bash")))
 #+end_src
 
@@ -60,16 +59,24 @@
 
 *** Kill Current buffer on C-x k
 #+begin_src emacs-lisp
-  (defun kill-curr-buffer ()
+  (defun kill-current-buffer ()
     (interactive)
     (kill-buffer (current-buffer)))
-  (global-set-key (kbd "C-x k") 'kill-curr-buffer)
+  (global-set-key (kbd "C-x k") 'kill-current-buffer)
+#+end_src
+
+*** Kill All Buffers
+#+begin_src emacs-lisp
+  (defun kill-all-buffers ()
+    (interactive)
+    (mapc 'kill-buffer (buffer-list)))
+  (global-set-key (kbd "C-M-s-k") 'kill-all-buffers)
 #+end_src
 
 *** Autosaving and Temp files
 #+begin_src emacs-lisp
-(setq make-backup-file nil)
-(setq auto-save-default nil)
+  (setq make-back nil)
+  (setq auto-save-default nil)
 #+end_src
 
 *** Confirmation Prompts
@@ -125,7 +132,7 @@
     :bind ("C-c s e" . sudo-edit))
 #+end_src
 
-*** IDO (Interactive Do) Modee
+*** IDO (Interactive Do) Mode
 **** Enable ido mode
 #+begin_src emacs-lisp
   (setq ido-enable-flex-matching nil)
@@ -234,7 +241,7 @@ Smex is a M-x enhancement built on top of IDO for MRU and MFU M-x commands.
     :init (rainbow-mode 1))
 #+end_src
 
-*** avy (easymotion for Emacs)
+*** EasyMotion for Emacs (avy)
 Avy works like easymotion in vim. Bound to M-s.
 #+begin_src emacs-lisp
   (use-package avy
@@ -252,6 +259,14 @@ Avy works like easymotion in vim. Bound to M-s.
                               (?\" . ?\")
                               ))
   (electric-pair-mode t)
+#+end_src
+
+*** Bracket Delimiting
+#+begin_src emacs-lisp
+  (use-package rainbow-delimiters
+    :ensure t
+    :init
+    (rainbow-delimiters-mode 1))
 #+end_src
 
 *** Sub-word motion
@@ -279,11 +294,20 @@ Avy works like easymotion in vim. Bound to M-s.
         (point-at-eol)))))
   (global-set-key (kbd "C-c w l") 'copy-whole-line)
 #+end_src
+
 *** Whitespace Greedy Deletion (hungry-delete)
 #+begin_src emacs-lisp
   (use-package hungry-delete
     :ensure t
     :config (global-hungry-delete-mode))
+#+end_src
+
+*** Completion
+#+begin_src emacs-lisp
+  (use-package company
+    :ensure t
+    :init
+    (add-hook 'after-init-hook 'global-company-mode))
 #+end_src
 
 
@@ -297,7 +321,4 @@ Avy works like easymotion in vim. Bound to M-s.
 #+begin_src emacs-lisp
   (setq org-src-window-setup 'current-window)
 #+end_src
-
-
-
 
