@@ -15,6 +15,32 @@
 
 
 ** Emacs System
+
+*** Terminal
+**** Set Default Shell to System Bash
+#+begin_src emacs-lisp
+(defvar my-term-shell "bash")
+(defadvice ansi-term (before force-bash)
+  (interactive (list my-term-shell)))
+(ad-activate 'ansi-term)
+#+end_src
+
+*** Startup Buffer
+#+begin_src emacs-lisp
+  (setq inhibit-startup-message t)
+
+  (add-hook 'after-init-hook
+            (lambda ()
+  ;            (kill-buffer "*scratch*")
+              (ansi-term "bash")))
+#+end_src
+
+*** Line Numbers
+#+begin_src emacs-lisp
+  (line-number-mode 1)
+  (column-number-mode 1)
+#+end_src
+
 *** Config edit/reload
 **** edit
 #+begin_src emacs-lisp
@@ -32,10 +58,12 @@
   (global-set-key (kbd "C-c r") 'config-reload)
 #+end_src
 
-*** Default Startup Buffers
+*** Kill Current buffer on C-x k
 #+begin_src emacs-lisp
-;; show or don't show the startup screen
-(setq inhibit-startup-message nil)
+  (defun kill-curr-buffer ()
+    (interactive)
+    (kill-buffer (current-buffer)))
+  (global-set-key (kbd "C-x k") 'kill-curr-buffer)
 #+end_src
 
 *** Autosaving and Temp files
@@ -96,6 +124,7 @@
     :ensure t
     :bind ("C-c s e" . sudo-edit))
 #+end_src
+
 *** IDO (Interactive Do) Modee
 **** Enable ido mode
 #+begin_src emacs-lisp
@@ -239,7 +268,17 @@ Avy works like easymotion in vim. Bound to M-s.
   (global-set-key (kbd "C-c w w") 'kill-whole-word)
 #+end_src
 
-*** 
+*** Copy Whole line
+#+begin_src emacs-lisp
+  (defun copy-whole-line ()
+    (interactive)
+    (save-excursion
+      (kill-new
+       (buffer-substring
+        (point-at-bol)
+        (point-at-eol)))))
+  (global-set-key (kbd "C-c w l") 'copy-whole-line)
+#+end_src
 *** Whitespace Greedy Deletion (hungry-delete)
 #+begin_src emacs-lisp
   (use-package hungry-delete
@@ -260,13 +299,5 @@ Avy works like easymotion in vim. Bound to M-s.
 #+end_src
 
 
-** Terminal
-*** Set Default Shell to System Bash
-#+begin_src emacs-lisp
-(defvar my-term-shell "bash")
-(defadvice ansi-term (before force-bash)
-  (interactive (list my-term-shell)))
-(ad-activate 'ansi-term)
-#+end_src
 
 
