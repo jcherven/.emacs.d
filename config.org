@@ -87,10 +87,16 @@
     :init
     :config
     (evil-mode 1)
-    (setq evil-default-state 'normal))
+    (setq evil-default-state 'emacs))
 #+end_src
 
-*** IDO (Interactive Do) Mode
+*** Sudo Edit
+#+begin_src emacs-lisp
+  (use-package sudo-edit
+    :ensure t
+    :bind ("C-c s e" . sudo-edit))
+#+end_src
+*** IDO (Interactive Do) Modee
 **** Enable ido mode
 #+begin_src emacs-lisp
   (setq ido-enable-flex-matching nil)
@@ -208,11 +214,49 @@ Avy works like easymotion in vim. Bound to M-s.
     ("M-s" . avy-goto-char))
 #+end_src
 
+*** Bracket and Quote Completion (electric)
+#+begin_src emacs-lisp
+  (setq electric-pair-pairs '(
+                              (?\( . ?\))
+                              (?\[ . ?\])
+                              (?\{ . ?\})
+                              (?\" . ?\")
+                              ))
+  (electric-pair-mode t)
+#+end_src
+
+*** Sub-word motion
+#+begin_src emacs-lisp
+  (global-subword-mode 1)
+#+end_src
+
+*** Kill Whole Word
+#+begin_src emacs-lisp
+  (defun kill-whole-word ()
+    (interactive)
+    (backward-word-strictly)
+    (kill-word 1))
+  (global-set-key (kbd "C-c w w") 'kill-whole-word)
+#+end_src
+
+*** 
+*** Whitespace Greedy Deletion (hungry-delete)
+#+begin_src emacs-lisp
+  (use-package hungry-delete
+    :ensure t
+    :config (global-hungry-delete-mode))
+#+end_src
+
 
 ** Org Mode
 *** Heading Indentation
 #+begin_src emacs-lisp
   (org-indent-mode 1)
+#+end_src
+
+*** Code Editing Window
+#+begin_src emacs-lisp
+  (setq org-src-window-setup 'current-window)
 #+end_src
 
 
