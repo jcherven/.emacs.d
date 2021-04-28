@@ -12,6 +12,12 @@
 (scroll-bar-mode 1)
 #+end_src
 
+*** Transparent Window Frame
+#+begin_src emacs-lisp
+  (set-frame-parameter (selected-frame) 'alpha '(85 .50))
+  (add-to-list 'default-frame-alist '(alpha . (85 .50)))
+#+end_src
+
 ** Emacs System
 *** Terminal
 **** Set Default Shell to System Bash
