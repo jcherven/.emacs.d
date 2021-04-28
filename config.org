@@ -1,18 +1,16 @@
 #+STARTUP: indent
 * Org Documented Emacs Configuration
-
 ** GUI
 *** Disable Toolbar and Menubar
 #+begin_src emacs-lisp
-(tool-bar-mode -1)
-(menu-bar-mode -1)
+  (tool-bar-mode -1)
+  (menu-bar-mode -1)
 #+end_src
 
 *** Scroll Bar Mode
 #+begin_src emacs-lisp
 (scroll-bar-mode 1)
 #+end_src
-
 
 ** Emacs System
 *** Terminal
@@ -33,6 +31,11 @@
               (ansi-term "bash")))
 #+end_src
 
+*** Color Themes (autothemer)
+#+begin_src emacs-lisp
+  (use-package autothemer
+    :ensure t)
+#+end_src
 *** Modeline
 #+begin_src emacs-lisp
   (use-package diminish
@@ -339,7 +342,6 @@ Avy works like easymotion in vim. Bound to M-s.
     :init
     (add-hook 'after-init-hook 'global-company-mode))
 #+end_src
-
 
 ** Org Mode
 *** Heading Indentation
