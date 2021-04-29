@@ -19,6 +19,14 @@
 #+end_src
 
 ** Emacs System
+*** EXWM
+#+begin_src emacs-lisp
+  (use-package exwm
+    :ensure t
+    :config
+    (require 'exwm-config)
+    (exwm-config-default))
+#+end_src
 *** Terminal
 **** Set Default Shell to System Bash
 #+begin_src emacs-lisp

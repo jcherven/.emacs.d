@@ -26,6 +26,7 @@
    [default default default italic underline success warning error])
  '(ansi-color-names-vector
    ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
+ '(auth-source-save-behavior nil)
  '(beacon-color "green")
  '(beacon-mode t)
  '(custom-enabled-themes nil)
@@ -55,7 +56,7 @@
  '(linum-format 'dynamic)
  '(objed-cursor-color "#e61f44")
  '(package-selected-packages
-   '(doom-themes autothemer symon dmenu diminish company dashboard rainbow-delimiters sudo-edit hungry-delete evil switch-window avy undo-tree smex ido-vertical-mode beacon spacemacs-theme which-key use-package))
+   '(exwm doom-themes autothemer symon dmenu diminish company dashboard rainbow-delimiters sudo-edit hungry-delete evil switch-window avy undo-tree smex ido-vertical-mode beacon spacemacs-theme which-key use-package))
  '(pdf-view-midnight-colors '("#655370" . "#fbf8ef"))
  '(rustic-ansi-faces
    ["#0c0a20" "#e61f44" "#a7da1e" "#ffd400" "#1ea8fc" "#ff2afc" "#42c6ff" "#f2f3f7"])
