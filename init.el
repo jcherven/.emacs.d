@@ -56,7 +56,7 @@
  '(linum-format 'dynamic)
  '(objed-cursor-color "#e61f44")
  '(package-selected-packages
-   '(doom-themes autothemer symon dmenu diminish company dashboard rainbow-delimiters sudo-edit hungry-delete evil switch-window avy undo-tree smex ido-vertical-mode beacon spacemacs-theme which-key use-package))
+   '(emmet-mode js2-mode web-mode doom-themes autothemer symon dmenu diminish company dashboard rainbow-delimiters sudo-edit hungry-delete evil switch-window avy undo-tree smex ido-vertical-mode beacon spacemacs-theme which-key use-package))
  '(pdf-view-midnight-colors '("#655370" . "#fbf8ef"))
  '(rustic-ansi-faces
    ["#0c0a20" "#e61f44" "#a7da1e" "#ffd400" "#1ea8fc" "#ff2afc" "#42c6ff" "#f2f3f7"])

@@ -363,6 +363,19 @@ Avy works like easymotion in vim. Bound to M-s.
     (add-hook 'after-init-hook 'global-company-mode))
 #+end_src
 
+** Programming Languages
+#+begin_src emacs-lisp
+  (use-package web-mode
+    :ensure t)
+  (add-to-list 'auto-mode-alist '("\\.scss\\'" . web-mode))
+
+  (use-package js2-mode
+    :ensure t)
+
+  (use-package emmet-mode
+    :ensure t)
+#+end_src
+
 ** Org Mode
 *** Heading Indentation
 #+begin_src emacs-lisp
