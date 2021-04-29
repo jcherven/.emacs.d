@@ -21,12 +21,18 @@
 ** Emacs System
 *** EXWM
 #+begin_src emacs-lisp
-  (use-package exwm
-    :ensure t
-    :config
-    (require 'exwm-config)
-    (exwm-config-default))
+  ;(use-package exwm
+  ;  :ensure t
+  ;  :config
+  ;  (require 'exwm-config)
+  ;  (exwm-config-default))
+  ;
+  ;(require 'exwm-systemtray)
+  ;(exwm-systemtray-enable)
+  ;(global-set-key (kbd "s-k") 'exwm-workspace-delete)
+  ;(global-set-key (kbd "s-w") 'exwm-workspace-swap)
 #+end_src
+
 *** Terminal
 **** Set Default Shell to System Bash
 #+begin_src emacs-lisp
