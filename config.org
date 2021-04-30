@@ -136,11 +136,11 @@
 *** Keybindings
 **** Packages
 #+begin_src emacs-lisp
-;; which-key displays a helpful menu for emacs keybindings
-(use-package which-key
-  :ensure t
-  :init
-  (which-key-mode))
+  ;; which-key displays a helpful menu for emacs keybindings
+  (use-package which-key
+    :ensure t
+    :init
+    (which-key-mode))
 #+end_src
 
 **** Bindings
@@ -160,7 +160,7 @@
     :init
     :config
     (evil-mode 1)
-    (setq evil-default-state 'emacs))
+    (setq evil-default-state 'normal))
 #+end_src
 
 *** Sudo Edit
